@@ -23,7 +23,7 @@ export class AuthorizationGuard implements CanActivate {
     const req = httpContext.getRequest();
     const res = httpContext.getResponse();
 
-    const checkJwt = promisify(
+    const checkJWT = promisify(
       jwt({
         secret: expressJwtSecret({
           cache: true,
@@ -38,7 +38,7 @@ export class AuthorizationGuard implements CanActivate {
     );
 
     try {
-      await checkJwt(req, res);
+      await checkJWT(req, res);
 
       return true;
     } catch (err) {
